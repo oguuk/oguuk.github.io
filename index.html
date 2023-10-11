@@ -38,9 +38,12 @@
 <h2>Kakao Social Login Successful!</h2>
 
 <script>
-    // 이 부분은 실제로 토큰 정보를 받아와야 합니다.
-    const accessToken = 'YOUR_ACCESS_TOKEN';
-    const refreshToken = 'YOUR_REFRESH_TOKEN';
+    // URL의 fragment에서 토큰 정보를 추출
+    const fragment = new URL(window.location.href).hash.substring(1); // '#' 제거
+    const params = new URLSearchParams(fragment);
+    
+    const accessToken = params.get('access_token');
+    const refreshToken = params.get('refresh_token');
 
     // iOS WebView로 토큰 정보 전송
     function sendTokenToiOSApp() {
